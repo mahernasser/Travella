@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "19050272276",
+    "project_id": "kemet-f2894",
+    "storage_bucket": "kemet-f2894.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19050272276:android:118c1eaf97c9c92550b901",
+        "android_client_info": {
+          "package_name": "com.example.kimit_tours"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "19050272276-du6ui9ekfmmp9t0p90en5m6un6robsgg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6DLex8_-4sQslTeR15UeFalnhtkBePh0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "19050272276-du6ui9ekfmmp9t0p90en5m6un6robsgg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
