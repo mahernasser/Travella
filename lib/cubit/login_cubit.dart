@@ -13,7 +13,6 @@ class LoginCubit extends Cubit<AppStates> {
 
   void visibilityHandle() {
     isVisible = !isVisible;
-    print('objecst');
     emit(LoginPasswordVisibilityState());
   }
 
@@ -27,6 +26,7 @@ class LoginCubit extends Cubit<AppStates> {
       print(value.user!.email);
       emit(LoginSuccessState());
     }).catchError((error) {
+      print(error.toString());
       emit(LoginErrorState(error.toString()));
     });
   }

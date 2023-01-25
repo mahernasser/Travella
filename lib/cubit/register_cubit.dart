@@ -50,7 +50,6 @@ class RegisterCubit extends Cubit<AppStates> {
   }) {
     UserModel model = UserModel(
       uId: uId,
-      country: country,
       email: email,
       name: name,
     );

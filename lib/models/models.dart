@@ -8,12 +8,30 @@ class CategoryModel {
   );
 }
 
-class MostPopular {
-  final String title;
+enum ChatMessageType { user, bot }
+
+class ChatMessage {
+  ChatMessage({
+    required this.text,
+    required this.chatMessageType,
+  });
+
+  final String text;
+  final ChatMessageType chatMessageType;
+}
+
+class Attraction {
+  final String name;
+  final dynamic description;
   final String location;
   final String imageUrl;
 
-  MostPopular(this.title, this.location, this.imageUrl);
+  Attraction({
+    required this.name,
+    required this.location,
+    required this.imageUrl,
+    required this.description,
+  });
 }
 
 class Trip {
@@ -29,6 +47,7 @@ class Trip {
   final String tripType;
   final List<String> included;
   final List<String> excluded;
+
   Trip({
     required this.included,
     required this.excluded,
@@ -49,5 +68,6 @@ class Category {
   final String id;
   final String title;
   final String imageUrl;
+
   Category({required this.id, required this.title, required this.imageUrl});
 }

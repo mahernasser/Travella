@@ -9,18 +9,18 @@ class MainCubit extends Cubit<AppStates> {
 
   bool isDark = false;
 
-  String scaffoldImg = 'assets/images/white_scaffold.jpg';
+  // String scaffoldImg = 'assets/images/white_scaffold.jpg';
 
   themeToggle() {
     isDark = !isDark;
     emit(ThemeModeChange());
   }
 
-  scaffoldChange() {
-    if (isDark) {
-      scaffoldImg = 'assets/images/dark_scaffold.jpg';
-    } else {
-      scaffoldImg = 'assets/images/white_scaffold.jpg';
-    }
-  }
+  // scaffoldChange() {
+  //   if (isDark) {
+  //     scaffoldImg = 'assets/images/dark_scaffold.jpg';
+  //   } else {
+  //     scaffoldImg = 'assets/images/white_scaffold.jpg';
+  //   }
+  // }
 }

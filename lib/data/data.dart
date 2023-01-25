@@ -41,19 +41,58 @@ List<Category> categories = [
 ];
 
 List<CategoryModel> catList = [
-  CategoryModel('Full Packages', 'assets/images/tour_package.png'),
-  CategoryModel('Nile Cruises', 'assets/images/cruise.png'),
-  CategoryModel('Excursions', 'assets/images/excursions.png'),
-  CategoryModel('Day tours', 'assets/images/day_tour.png'),
-  CategoryModel('Discover', 'assets/images/discover.png'),
+  CategoryModel('Full Packages', 'assets/images/categories/full_packages.jpg'),
+  CategoryModel('Nile Cruises', 'assets/images/categories/nile_cruise.jpg'),
+  CategoryModel('Excursions', 'assets/images/categories/excursions.jpg'),
+  CategoryModel('Day tours', 'assets/images/categories/day_tour.jpg'),
+  CategoryModel('Discover', 'assets/images/categories/discover.jpg'),
 ];
-List<MostPopular> popularList = [
-  MostPopular('Karnak Temple', 'Luxor', 'https://i.ibb.co/pKrnn5J/karnak.jpg'),
-  MostPopular('Abu Simbel', 'Aswan', 'https://i.ibb.co/G9zNWYS/146.jpg'),
-  MostPopular('Khan El Khalil', 'Giza',
-      'https://i.imgur.com/mgCSZJs_d.webp?maxwidth=500&fidelity=grand'),
-  MostPopular('Sharm El Sheikh', 'Red Sea',
-      'https://i.ibb.co/p1BR7mD/sharm-el-sheikh.jpg'),
+List<Attraction> attractions = [
+  Attraction(
+    name: 'Karnak Temple',
+    location: 'Luxor',
+    imageUrl: 'https://i.ibb.co/pKrnn5J/karnak.jpg',
+    description: 'The largest temple in the egypt.',
+  ),
+  Attraction(
+    name: 'Abu Simbel Temple',
+    location: 'Aswan',
+    imageUrl: 'https://i.ibb.co/G9zNWYS/146.jpg',
+    description: 'The temple of King Ramses II.',
+  ),
+  Attraction(
+    name: 'Khan El khalil',
+    location: 'Cairo',
+    imageUrl: 'https://i.imgur.com/mgCSZJs_d.webp?maxwidth=500&fidelity=grand',
+    description: "The Egyptian ancient bazaar.",
+  ),
+  Attraction(
+    name: 'Sharm El Sheikh',
+    location: 'Red Sea',
+    imageUrl: 'https://i.ibb.co/p1BR7mD/sharm-el-sheikh.jpg',
+    description: "The city of peace.",
+  ),
+  Attraction(
+    name: 'Kom Ombo Temple',
+    location: 'Aswan',
+    imageUrl:
+        'https://www.tripsavvy.com/thmb/_MXn0mFzbKVa4uNYrtSPya4p0_4=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-157675568-5c3ee84246e0fb00016e5151.jpg',
+    description: "The unusual double temple.",
+  ),
+  Attraction(
+    name: 'Dahab City',
+    location: 'Red Sea',
+    imageUrl:
+        'https://www.propertyfinder.eg/blog/wp-content/uploads/2020/10/shutterstock_1396879814-1.jpg.webp',
+    description: "The Red Sea's golden city.",
+  ),
+  Attraction(
+    name: 'Edfu Temple',
+    location: 'Aswan',
+    imageUrl:
+        'https://www.planetware.com/photos-large/EGY/egypt-edfu-temple-of-horus-mammisi.jpg',
+    description: "The temple of King Horus.",
+  ),
 ];
 
 List<Trip> tripList = [
@@ -132,7 +171,7 @@ List<Trip> tripList = [
       'https://media.tacdn.com/media/attractions-splice-spp-674x446/07/9c/bd/1c.jpg',
       'https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/2e/2e/d7.jpg'
     ],
-    tripType: ['package', 'nc'],
+    tripType: 'package',
     cities: 6,
     description:
         'Combine the rich heritage of Cairo with a magical 5-day Nile cruise on this Egypt vacation package—a must for any lover of history. Experience the best Egypt tour, visiting all of Egypt’s top highlights attractions scattered across the desert and range from famous pyramids to forgotten temples only in 8 days. You’ll begin your tour in Cairo. This is where you will visit the Great Pyramids of Giza and the Egyptian Museum. Then, fly to Luxor to embark on your cruise on the Nile where you will explore captivating attractions and natural scenery between Luxor and Aswan. With this tour, enjoy a luxurious five-star cruise, your choice of traditional hotel or boutique hotel, mesmeric history, and a seductive charm that will have you leaving Egypt in astonishment. ',
@@ -153,7 +192,7 @@ List<Trip> tripList = [
     duration: '12 days',
     status: 'Private Tour',
     featureImgUrl:
-        'https://www.zubludiving.com/imager/images/Egypt-Red-Sea/Sharm-North/25799/Sharm-El-Sheikh-Hurghada-Dahab-banner_7dc09c0751cb822c11b13c9275467c28.webp',
+        'https://d3rr2gvhjw0wwy.cloudfront.net/uploads/activity_galleries/272563/2000x2000-0-70-6bc8b9fb3d169496977eb5cb144e4e33.jpg',
     cities: 7,
     description:
         'Enjoy the perfect combination of Egyptian culture and relaxation. This trip is ideal for those who want to have a taste of Egypt’s wonderful sites, as well as a good time to relax in Sharm El Sheikh. Experience the best of Egypt and indulge yourself in a vacation to Egypt visiting Pyramids of Giza, Sakkara and the Egyptian Museum. Fly to Luxor afterwards to explore top sights cruising the Nile from Luxor to Aswan. Then, loose yourself and relax on the beach of the Red Sea in Sharm El Sheikh. Plenty of activities and tours into the desert and mountains of Sinai await you. ',
@@ -219,10 +258,7 @@ List<Trip> tripList = [
       'https://venividitravel.com/wp-content/uploads/2019/01/Nile-Cruise-6.jpg',
       'https://www.tripsavvy.com/thmb/BGQx-cQiIKQl--0zOd7aNVoS8Oo=/900x0/filters:no_upscale():max_bytes(150000):strip_icc():gifv():format(webp)/GettyImages-500053303-5c80e80b46e0fb0001a5f168.jpg'
     ],
-    tripType: [
-      'package',
-      'nc',
-    ],
+    tripType: 'PACKAGE',
     cities: 6,
     description:
         'Unravel the marvelous beauty of Egypt through our carefully curated 11-day Cairo and Nile adventure. Revel in the splendor and grandeur of ancient Egyptian civilization in the Pharaonic Capital, Cairo, before embarking on a splendid Nile cruise down the magical waters of the Nile from Luxor to Aswan on the traditional yet luxurious Nebyt Dahabiya. Wind down the tranquil waters of the Nile on a unique route taking you through El Batekh, El Kab Village, Esna, Edfu, Gebel El Silsila, and much more. Enjoy a luxurious sailing experience on this intimate Dahabiya with a small number of cabins, mini bar, jacuzzi, and a shaded sun deck with a hot tub and chaise lounges, where you can back in the warm breeze of the Nile while feasting your eyes on the picturesque views of Upper Egypt’s charming river-side cities. ',

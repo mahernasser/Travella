@@ -1,10 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kimit_tours/shared/constants.dart';
+import 'package:kimit_tours/views/login_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../network/local/cache_helper.dart';
-import '../views/home_layout.dart';
 
 class OnBoardingModel {
   final String title;
@@ -35,7 +36,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   action() {
     CacheHelper.setBool('finish', true);
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-      return const HomeLayout();
+      return LoginScreen();
     }));
   }
 
@@ -44,8 +45,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Theme.of(context).primaryColor,
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.blueGrey,
       //or set color with: Color(0xFF0000FF)
     )); //status s
     return Scaffold(
@@ -90,7 +91,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               style: ElevatedButton.styleFrom(
                                 shape: (RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12))),
-                                primary: Theme.of(context).primaryColor,
+                                primary: secondaryColor,
                               ),
                               child: Padding(
                                 padding:
@@ -100,6 +101,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                     Text(
                                       'SKIP',
                                       style: TextStyle(
+                                          color: Colors.white,
                                           fontFamily: 'oxygen',
                                           fontWeight: FontWeight.w800),
                                     ),
@@ -109,6 +111,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                     Icon(
                                       Icons.arrow_right_alt_outlined,
                                       size: 30,
+                                      color: Colors.white,
                                     )
                                   ],
                                 ),
@@ -144,7 +147,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 },
                                 child: Icon(
                                   Icons.play_arrow_rounded,
-                                  color: Theme.of(context).primaryColor,
+                                  color: secondaryColor,
                                   size: 36,
                                 ),
                               ),
@@ -162,7 +165,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             dotHeight: 8,
                             dotWidth: 12,
                             dotColor: Colors.white,
-                            activeDotColor: Theme.of(context).primaryColor,
+                            activeDotColor: secondaryColor,
                           )),
                     ],
                   ),

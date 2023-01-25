@@ -1,105 +1,119 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:icon_broken/icon_broken.dart';
 
 import '../models/models.dart';
 import '../views/trip_details_screen.dart';
+import 'constants.dart';
 
-Widget catItem({
-  required CategoryModel model,
-  VoidCallback? onTap,
-}) {
+Widget catItem({required CategoryModel model, required context}) {
   return InkWell(
-    onTap: onTap,
-    child: SizedBox(
-      width: 150,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: const Color(0xffF5A31B),
-        ),
-        width: double.infinity,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    onTap: () {},
+    child: Column(
+      children: [
+        Stack(
           children: [
-            Text(
-              model.title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.w800,
-                fontFamily: 'oxygen',
+            CircleAvatar(
+              backgroundColor: secondaryColor.withOpacity(0.65),
+              radius: 36,
+            ),
+            CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 50,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Image(
+                  image: AssetImage(model.imageUrl),
+                  width: 160,
+                  fit: BoxFit.cover,
+                  height: 95,
+                  //height: 90,
+                ),
               ),
             ),
-            Image.asset(
-              model.imageUrl,
-              width: 26,
-              height: 26,
-            )
           ],
         ),
-      ),
+        const SizedBox(
+          height: 7,
+        ),
+        Text(
+          model.title,
+          style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                fontWeight: FontWeight.w900,
+                fontSize: 15,
+                fontFamily: 'oxygen',
+              ),
+        ),
+      ],
     ),
   );
 }
 
-Widget popularItem(MostPopular model, context) {
-  return Card(
-    shape: RoundedRectangleBorder(
-      side: const BorderSide(color: Colors.white70, width: 1),
-      borderRadius: BorderRadius.circular(12),
-    ),
-    shadowColor: Colors.white,
-    elevation: 1,
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: Image.network(
-            model.imageUrl,
-            width: 140,
-            fit: BoxFit.cover,
-            height: 130,
+Widget attractionsWidget(Attraction model, context) {
+  return SizedBox(
+    width: MediaQuery.of(context).size.width * .36,
+    child: Card(
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(color: Colors.white70, width: 1),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      shadowColor: Colors.white,
+      elevation: 3,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.network(
+              model.imageUrl,
+              width: MediaQuery.of(context).size.width * .50,
+              fit: BoxFit.cover,
+              height: 109,
+            ),
           ),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 5, top: 5),
-              child: Text(
-                model.title,
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 18.2,
-                    fontWeight: FontWeight.w900,
-                    fontFamily: 'oxygen'),
-                textAlign: TextAlign.start,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 5, top: 5),
+                child: AutoSizeText(
+                  model.name,
+                  maxLines: 1,
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 15.2,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: 'oxygen'),
+                  textAlign: TextAlign.start,
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 5, top: 5),
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.location_on,
-                    color: Color(0xffF5A31B),
-                  ),
-                  const SizedBox(width: 3),
-                  Text(model.location,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Colors.grey,
-                          fontSize: 18,
-                          fontFamily: 'oxygen'))
-                ],
+              const SizedBox(
+                height: 2,
               ),
-            ),
-          ],
-        ),
-      ],
+              Padding(
+                padding: const EdgeInsets.only(left: 0, top: 0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.location_on,
+                      color: defaultColor,
+                    ),
+                    const SizedBox(width: 3),
+                    Text(model.location,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.grey,
+                            fontSize: 15,
+                            fontFamily: 'oxygen'))
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     ),
   );
 }
@@ -134,16 +148,27 @@ Widget drawerMenu() {
         ),
         ListTile(
           onTap: () {},
-          leading: const Icon(Icons.home, size: 20.0, color: Colors.white),
+          leading: const Icon(Icons.home, size: 25.0, color: Colors.white),
           title: const Text("Home"),
           textColor: Colors.white,
           dense: true,
         ),
         ExpansionTile(
-          title: const Text(
-            'ExpansionTile 1',
+          onExpansionChanged: (c) {
+            if (c) {
+            } else {}
+          },
+          collapsedTextColor: Colors.white,
+          trailing: Container(
+              margin: EdgeInsets.only(right: 30),
+              child: const Icon(IconBroken.Arrow___Down_Circle)),
+          leading: const Icon(
+            Icons.list,
+            color: Colors.white,
           ),
-          subtitle: const Text('Trailing expansion arrow icon'),
+          title: const Text(
+            'Egypt tours',
+          ),
           children: <Widget>[
             ListTile(
               onTap: () {},
@@ -187,13 +212,24 @@ Widget drawerMenu() {
             ),
           ],
         ),
+        ListTile(
+          onTap: () {},
+          leading: const Icon(IconBroken.Call, size: 25.0, color: Colors.white),
+          title: const Text("Contact Us"),
+          textColor: Colors.white,
+          dense: true,
+        ),
       ],
     ),
   );
 }
 
 Widget titleBuilder(String text, context) {
-  return Text(text, style: Theme.of(context).textTheme.titleMedium);
+  return Text(text,
+      style: Theme.of(context)
+          .textTheme
+          .labelMedium!
+          .copyWith(fontFamily: 'oxygen'));
 }
 
 Widget tripCard({
@@ -238,7 +274,7 @@ Widget tripCard({
                         ])),
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                height: 250,
+                height: 200,
                 alignment: Alignment.bottomLeft,
                 child: Text(
                   tripModel.title,
@@ -316,7 +352,7 @@ Widget categoryItem({
         child: Image.network(
           categoryModel.imageUrl,
           fit: BoxFit.cover,
-          height: 250,
+          height: 200,
         ),
       ),
       Container(
@@ -324,11 +360,11 @@ Widget categoryItem({
             color: Colors.black.withOpacity(0.4),
             borderRadius: BorderRadius.circular(18)),
         alignment: Alignment.center,
-        height: 250,
+        height: 200,
         child: Text(
           categoryModel.title,
           style: const TextStyle(
-              fontSize: 30,
+              fontSize: 25,
               fontWeight: FontWeight.w800,
               color: Colors.white,
               fontFamily: 'oxygen'),
@@ -340,10 +376,10 @@ Widget categoryItem({
 
 Widget customIcon(IconData icon, {Color? color}) {
   return CircleAvatar(
-    backgroundColor: Colors.white,
+    backgroundColor: defaultColor,
     child: Icon(
       icon,
-      color: color ?? Colors.grey,
+      color: color ?? Colors.white,
     ),
   );
 }
@@ -377,50 +413,170 @@ Widget itinerary(String title, BuildContext context) {
   );
 }
 
-Widget customField({
-  required BuildContext context,
-  String? label,
-  String? hintText,
+customTextField(
+    {TextInputType? inputType,
+    required Controller,
+    required String title,
+    VoidCallback? fieldTapping,
+    required validator,
+    required IconData? prefixIcon}) {
+  return TextFormField(
+    onTap: fieldTapping,
+    keyboardType: inputType,
+    controller: Controller,
+    decoration: InputDecoration(
+      labelStyle: TextStyle(
+        fontSize: 15,
+        fontFamily: 'oxygen',
+        fontWeight: FontWeight.w600,
+      ),
+      labelText: title,
+      prefixIcon: Icon(prefixIcon),
+      border: const OutlineInputBorder(),
+    ),
+    validator: validator,
+  );
+}
+
+customField({
+  VoidCallback? fieldTapping,
+  required String name,
   required IconData prefixIcon,
-  suffixIcon,
-  required String? Function(String?) validator,
+  required String? Function(String?) validate,
+  IconButton? suffixIcon,
   required TextEditingController controller,
-  onTap,
-  TextStyle? labelStyle,
-  bool? isVisible,
-  bool? readOnly,
-  TextInputType? inputType,
-  border,
+  bool? obsecureText,
+  bool? autofocus,
 }) {
   return TextFormField(
-    readOnly: readOnly ?? false,
-    obscureText: isVisible ?? false,
-    onTap: onTap,
+    autofocus: autofocus ?? false,
     controller: controller,
-    validator: validator,
-    keyboardType: inputType,
+    validator: validate,
+    onTap: fieldTapping,
+    obscureText: obsecureText ?? false,
     decoration: InputDecoration(
-      labelStyle: labelStyle ??
-          const TextStyle(
-              fontFamily: 'oxygen',
-              fontWeight: FontWeight.w900,
-              fontSize: 15,
-              color: Color(0xFF113861)),
-      focusColor: Colors.orange,
-      hoverColor: Colors.orange,
-      border: border ??
-          OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-            borderSide:
-                BorderSide(color: Theme.of(context).primaryColor, width: 1.0),
-          ),
-      labelText: label,
-      hintText: hintText,
-      prefixIcon: Icon(prefixIcon),
+      isDense: true,
+      hintText: name,
       suffixIcon: suffixIcon,
+      hintStyle: const TextStyle(
+        color: Colors.grey,
+        fontFamily: 'oxygen',
+        // fontWeight: FontWeight.w600,
+      ),
+      prefixIcon: Icon(prefixIcon),
+      filled: true,
+      fillColor: const Color(0xffEEEEEE),
+      border: InputBorder.none,
     ),
-    style: const TextStyle(
-        color: Color(0xFF113861), fontSize: 16, fontFamily: 'oxygen'),
+  );
+}
+
+Widget submitButton({
+  required String submitText,
+  required onTap,
+}) {
+  return SizedBox(
+    height: 55,
+    width: double.infinity,
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.indigoAccent,
+      ),
+      onPressed: onTap,
+      child: Text(
+        submitText,
+        style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w800,
+            fontSize: 20,
+            fontFamily: 'oxygen'),
+      ),
+    ),
+  );
+}
+
+Widget formBackground({
+  required String welcomeTitle,
+  required String welcomeHint,
+  required String imgPath,
+}) {
+  return Column(
+    children: [
+      Expanded(
+        flex: 2,
+        child: Stack(
+          children: [
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                image: AssetImage(
+                  imgPath,
+                ),
+                fit: BoxFit.cover,
+                // width: double.infinity,
+                // height: double.infinity,
+              )),
+            ),
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: Colors.black.withOpacity(0.4),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 38, horizontal: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      welcomeTitle,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 31,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.normal),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      welcomeHint,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'oxygen',
+                        color: Colors.white60,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      Expanded(
+          flex: 3,
+          child: Container(
+            color: Colors.white,
+          ))
+    ],
+  );
+}
+
+Widget layoutForm(Widget widget) {
+  return LayoutBuilder(
+    builder: (context, constraint) {
+      return SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: constraint.maxHeight),
+          child: IntrinsicHeight(
+            child: widget,
+          ),
+        ),
+      );
+    },
   );
 }
 
@@ -430,4 +586,94 @@ void navigateReplacement({
 }) {
   Navigator.pushReplacement(
       context, MaterialPageRoute(builder: (context) => widget));
+}
+
+Widget recTrip({
+  required Trip tripModel,
+  required BuildContext context,
+}) {
+  return GestureDetector(
+    onTap: () {
+      navigateReplacement(context: context, widget: const TripDetailsScreen());
+    },
+    child: SizedBox(
+      //width: MediaQuery.of(context).size.width * .84,
+      child: Card(
+        elevation: 6,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  tripModel.featureImgUrl,
+                  fit: BoxFit.cover,
+                  height: 120,
+                  width: double.infinity,
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    tripModel.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: secondaryColor,
+                        fontFamily: 'oxygen',
+                        fontSize: 15),
+                  ),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        tripModel.tripType,
+                        style: TextStyle(
+                          fontFamily: 'oxygen',
+                          color: defaultColor,
+                          fontSize: 12,
+                        ),
+                      ),
+                      Text(
+                        '${tripModel.price}\$',
+                        style: TextStyle(
+                          fontFamily: 'oxygen',
+                          color: defaultColor,
+                          fontSize: 12,
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Text(
+                    tripModel.description,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      wordSpacing: 1,
+                      fontSize: 11,
+                      color: Colors.grey,
+                      fontFamily: 'oxygen',
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
 }

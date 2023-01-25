@@ -12,6 +12,12 @@ class BottomShowState extends AppStates {}
 
 class BottomHideState extends AppStates {}
 
+class BarScrollState extends AppStates {}
+
+class BookingScrollState extends AppStates {}
+
+class GoBookState extends AppStates {}
+
 class AppHandleReverseHideBottomWidgetState extends AppStates {}
 
 class AppHandleForwardHideBottomWidgetState extends AppStates {}

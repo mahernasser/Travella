@@ -2,11 +2,9 @@ class UserModel {
   String? name;
   String? email;
   String? uId;
-  String? country;
 
   UserModel({
     required this.uId,
-    required this.country,
     required this.email,
     required this.name,
   });
@@ -14,7 +12,6 @@ class UserModel {
   UserModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     email = json['email'];
-    country = json['country'];
     uId = json['uId'];
   }
 
@@ -22,7 +19,6 @@ class UserModel {
     return {
       'name': name,
       'email': email,
-      'country': country,
       'uId': uId,
     };
   }
